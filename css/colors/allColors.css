@@ -1,0 +1,297 @@
+.step-blue-gray
+{
+	color: #999999;
+	background-position: -10px -10px;
+}
+.step1-blue-gray, .boxStart-blue-gray
+{
+	color: #ffffff;
+	background-position: -10px -170px;
+}
+.nextPrevButtons .activeButton-blue-gray
+{
+	color: #999999;
+	background-position: -10px -10px;
+}
+.nextPrevButtons .activeButton-blue-gray:hover
+{
+	color: #ffffff;
+	background-position: -10px -130px;
+}
+.step-blue-green
+{
+	color: #ffffff;
+	background-position: -10px -90px;
+}
+.step1-blue-green, .boxStart-blue-green
+{
+	background-position: -10px -170px;
+}
+.nextPrevButtons .activeButton-blue-green
+{
+	color: #ffffff;
+	background-position: -10px -70px;
+}
+.nextPrevButtons .activeButton-blue-green:hover
+{
+	background-position: -10px -130px;
+}
+.step-blue-maroon
+{
+	color: #ffffff;
+	background-position: -10px -250px;
+}
+.step1-blue-maroon, .boxStart-blue-maroon
+{
+	background-position: -10px -170px;
+}
+.nextPrevButtons .activeButton-blue-maroon
+{
+	color: #ffffff;
+	background-position: -10px -190px;
+}
+.nextPrevButtons .activeButton-blue-maroon:hover
+{
+	background-position: -10px -130px;
+}
+.step-blue-orange
+{
+	color: #ffffff;
+	background-position: -10px -330px;
+}
+.step1-blue-orange, .boxStart-blue-orange
+{
+	background-position: -10px -170px;
+}
+.nextPrevButtons .activeButton-blue-orange
+{
+	color: #ffffff;
+	background-position: -10px -250px;
+}
+.nextPrevButtons .activeButton-blue-orange:hover
+{
+	background-position: -10px -130px;
+}
+.step-green-blue
+{
+	color: #ffffff;
+	background-position: -10px -170px;
+}
+.step1-green-blue, .boxStart-green-blue
+{
+	background-position: -10px -90px;
+}
+.nextPrevButtons .activeButton-green-blue
+{
+	color: #ffffff;
+	background-position: -10px -130px;
+}
+.nextPrevButtons .activeButton-green-blue:hover
+{
+	color: #ffffff;
+	background-position: -10px -70px;
+}
+.step-green-gray
+{
+	color: #999999;
+	background-position: -10px -10px;
+}
+.step1-green-gray, .boxStart-green-gray
+{
+	color: #ffffff;
+	background-position: -10px -90px;
+}
+.nextPrevButtons .activeButton-green-gray
+{
+	color: #999999;
+	background-position: -10px -10px;
+}
+.nextPrevButtons .activeButton-green-gray:hover
+{
+	color: #ffffff;
+	background-position: -10px -70px;
+}
+.step-green-maroon
+{
+	color: #ffffff;
+	background-position: -10px -250px;
+}
+.step1-green-maroon, .boxStart-green-maroon
+{
+	background-position: -10px -90px;
+}
+.nextPrevButtons .activeButton-green-maroon
+{
+	color: #ffffff;
+	background-position: -10px -190px;
+}
+.nextPrevButtons .activeButton-green-maroon:hover
+{
+	background-position: -10px -70px;
+}
+.step-green-orange
+{
+	color: #ffffff;
+	background-position: -10px -330px;
+}
+.step1-green-orange, .boxStart-green-orange
+{
+	background-position: -10px -90px;
+}
+.nextPrevButtons .activeButton-green-orange
+{
+	color: #ffffff;
+	background-position: -10px -250px;
+}
+.nextPrevButtons .activeButton-green-orange:hover
+{
+	background-position: -10px -70px;
+}
+.step-maroon-blue
+{
+	color: #ffffff;
+	background-position: -10px -170px;
+}
+.step1-maroon-blue, .boxStart-maroon-blue
+{
+	background-position: -10px -250px;
+}
+.nextPrevButtons .activeButton-maroon-blue
+{
+	color: #ffffff;
+	background-position: -10px -130px;
+}
+.nextPrevButtons .activeButton-maroon-blue:hover
+{
+	background-position: -10px -190px;
+}
+.step-maroon-gray
+{
+	color: #999999;
+	background-position: -10px -10px;
+}
+.step1-maroon-gray, .boxStart-maroon-gray
+{
+	color: #ffffff;
+	background-position: -10px -250px;
+}
+.nextPrevButtons .activeButton-maroon-gray
+{
+	color: #999999;
+	background-position: -10px -10px;
+}
+.nextPrevButtons .activeButton-maroon-gray:hover
+{
+	color: #ffffff;
+	background-position: -10px -190px;
+}
+.step-maroon-green
+{
+	color: #ffffff;
+	background-position: -10px -90px;
+}
+.step1-maroon-green, .boxStart-maroon-green
+{
+	background-position: -10px -250px;
+}
+.nextPrevButtons .activeButton-maroon-green
+{
+	color: #ffffff;
+	background-position: -10px -70px;
+}
+.nextPrevButtons .activeButton-maroon-green:hover
+{
+	background-position: -10px -190px;
+}
+.step-maroon-orange
+{
+	color: #ffffff;
+	background-position: -10px -330px;
+}
+.step1-maroon-orange, .boxStart-maroon-orange
+{
+	background-position: -10px -250px;
+}
+.nextPrevButtons .activeButton-maroon-orange
+{
+	color: #ffffff;
+	background-position: -10px -250px;
+}
+.nextPrevButtons .activeButton-maroon-orange:hover
+{
+	background-position: -10px -190px;
+}
+.step-orange-blue
+{
+	color: #ffffff;
+	background-position: -10px -170px;
+}
+.step1-orange-blue, .boxStart-orange-blue
+{
+	background-position: -10px -330px;
+}
+.nextPrevButtons .activeButton-orange-blue
+{
+	color: #ffffff;
+	background-position: -10px -130px;
+}
+.nextPrevButtons .activeButton-orange-blue:hover
+{
+	background-position: -10px -250px;
+}
+.step-orange-gray
+{
+	color: #999999;
+	background-position: -10px -10px;
+}
+.step1-orange-gray, .boxStart-orange-gray
+{
+	color: #ffffff;
+	background-position: -10px -330px;
+}
+.nextPrevButtons .activeButton-orange-gray
+{
+	color: #999999;
+	background-position: -10px -10px;
+}
+.nextPrevButtons .activeButton-orange-gray:hover
+{
+	color: #ffffff;
+	background-position: -10px -250px;
+}
+.step-orange-green
+{
+	color: #ffffff;
+	background-position: -10px -90px;
+}
+.step1-orange-green, .boxStart-orange-green
+{
+	background-position: -10px -330px;
+}
+.nextPrevButtons .activeButton-orange-green
+{
+	color: #ffffff;
+	background-position: -10px -70px;
+}
+.nextPrevButtons .activeButton-orange-green:hover
+{
+	background-position: -10px -250px;
+}
+.step-orange-maroon
+{
+	color: #ffffff;
+	background-position: -10px -250px;
+}
+.step1-orange-maroon, .boxStart-orange-maroon
+{
+	background-position: -10px -330px;
+}
+.nextPrevButtons .activeButton-orange-maroon
+{
+	color: #ffffff;
+	background-position: -10px -190px;
+}
+.nextPrevButtons .activeButton-orange-maroon:hover
+{
+	background-position: -10px -250px;
+}

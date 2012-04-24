@@ -1,0 +1,18 @@
+.step-maroon-blue
+{
+	color: #ffffff;
+	background-position: -10px -170px;
+}
+.step1-maroon-blue, .boxStart-maroon-blue
+{
+	background-position: -10px -250px;
+}
+.nextPrevButtons .activeButton-maroon-blue
+{
+	color: #ffffff;
+	background-position: -10px -130px;
+}
+.nextPrevButtons .activeButton-maroon-blue:hover
+{
+	background-position: -10px -190px;
+}

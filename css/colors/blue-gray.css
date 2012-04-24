@@ -1,0 +1,20 @@
+.step-blue-gray
+{
+	color: #999999;
+	background-position: -10px -10px;
+}
+.step1-blue-gray, .boxStart-blue-gray
+{
+	color: #ffffff;
+	background-position: -10px -170px;
+}
+.nextPrevButtons .activeButton-blue-gray
+{
+	color: #999999;
+	background-position: -10px -10px;
+}
+.nextPrevButtons .activeButton-blue-gray:hover
+{
+	color: #ffffff;
+	background-position: -10px -130px;
+}

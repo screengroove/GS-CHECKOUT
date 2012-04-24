@@ -1,0 +1,975 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+	<link type="text/css" rel="stylesheet" href="css/colors/allColors.css" />
+	
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+   
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/languages/jquery.validationEngine-en.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/jquery.validationEngine.js"></script>
+	<script type="text/javascript" src="js/jquery.processPanel.js"></script>
+	
+	
+    <script src="js/bootstrap-tab.js"></script>
+    <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/bootstrap-popover.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+    <script src="js/bootstrap-transition.js"></script>
+	<!--
+	
+    <script src="js/bootstrap-alert.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+    <script src="js/bootstrap-dropdown.js"></script>
+    <script src="js/bootstrap-scrollspy.js"></script>
+    <script src="js/bootstrap-button.js"></script>
+    <script src="js/bootstrap-collapse.js"></script>
+    <script src="js/bootstrap-carousel.js"></script>
+    <script src="js/bootstrap-typeahead.js"></script>
+	-->
+<script type="text/javascript">
+jQuery(document).ready(function($){
+
+	function securityCode(field, rules, i, options){
+		if (field.val() != "CVC" || field.val() != "CVV") {
+			// this allows to use i18 for the error msgs
+			return options.allrules.validate2fields.alertText;
+		}
+	}
+    $("#processPanel").processPanel({
+      kind: "freeChoice",
+      icons: false,
+      nextPrevButtons: true,
+      style: "green-gray",
+      onOpen: function(event, step, content, stepNumber){
+        window.location.href="#processPanel";
+		$('.stepinfo:not(:hidden)').slideUp(500,function(){
+			$(this).hide();
+		});
+		$('.stepinfo:eq('+(stepNumber-1)+')').delay(500).slideDown('slow');
+      }  
+    });
+	
+	/**
+	*	jQuery Validation part
+	*/
+
+	/*
+	$(".validateform, .validateform2").validationEngine({focusFirstField:false});
+	
+	$('.nextPrevButtons .button').on('click',function(e){
+		e.preventDefault();
+		if($(".validateform").validationEngine('validate') || $(".validateform2").validationEngine('validate')){
+			console.log('done');
+		} else {
+			return false;
+		}
+	});
+	*/
+	
+	// password check icon
+	$('#checkpassword').append('<div class="passchecked"></div>');
+	$('#checkpassword input').focusout(function(){
+		if ($('#checkpassword input:eq(1)').val() == '') return;
+		if($('#checkpassword').validationEngine('validate')){
+			if($('.passchecked:hidden', '#checkpassword').length > 0)
+				$('.passchecked', '#checkpassword').fadeIn(1000);
+		} else {
+			$('.passchecked', '#checkpassword').hide();
+		}
+	});
+	
+	// hide validation overlay information
+	$('#content1 .controls').on('click', 'input', function(e){
+		$(".validateform").validationEngine('hide');
+		$("#checkpassword").validationEngine('hide');
+	});
+	
+	// open step info 1
+	$('.stepinfo:eq(0)').slideDown();
+	
+	// popover
+	$(".popover").popover({placement:'left'}); 
+});
+
+
+$('#myModal').modal({  
+  backdrop: 'true',
+  show:'false' 
+})  
+
+jQuery(document).ready(function($){
+
+  $("input[name$='type']").click(function(){
+	var value = $(this).val();
+	if(value=='Individual') {
+		$("#Individual_box").show();
+		$("#jointnames").hide();
+		$("#company_name").hide();
+	}
+	else if(value=='joint') {
+		$("#jointnames").show();
+		$("#Individual_box").hide();
+		$("#company_name").hide();
+	}
+	else if(value=='Company') {
+		$("#company_name").show();
+		$("#Individual_box").show();
+		$("#jointnames").hide();
+	}
+  });
+  
+  $("#Individual_box").show();
+  $("#jointnames").hide();
+  
+});
+
+
+jQuery(document).ready(function($){
+  
+  $('a[href="#content3"]').click(function(){
+	//$('input[value="credit"]').click();
+	$('#shipping-address-info').empty().append('<li><h5>Shipping Address</h5></li><li>Patrick Iwanicki</li><li>490 Santa Monica Blvd.</li><li>Santa Monica, California 90401</li><li> <a href="#" id="edit-address">edit address</a></li>');
+	$('#edit-address').click(function(){
+		$('a[href="#content2"]').click();
+	});
+  });
+  
+  $('.same-shipbill').change(function(){
+	
+	var form = $(this).parents('form');
+	if($(this).attr('checked') == 'checked'){
+		
+		$('.billing-country option',form).removeAttr('selected');
+		$('.billing-country option[value="'+$('.shipping-country').val()+'"]',form).attr('selected','selected');
+		
+		$('.billing-address',form).val($('.shipping-address').val());
+		$('.billing-city input',form).val($('.shipping-city').val());
+		$('.billing-state input',form).val($('.shipping-state').val());
+		$('.billing-zip input',form).val($('.shipping-zip').val());
+		
+	} else {
+	
+		$('.billing-country option',form).removeAttr('selected');
+		$('.billing-country option:first',form).attr('selected','selected');
+		
+		$('.billing-address',form).val('');
+		$('.billing-city input',form).val('');
+		$('.billing-state input',form).val('');
+		$('.billing-zip input',form).val('');
+		
+	}
+  });
+  
+  $("input[name$='type']").click(function(){
+	var value = $(this).val();
+	if(value=='wire') {
+		$("#wire_box").slideDown('slow');
+		$("#credit_box").hide();
+		$("#sidebar-step3").hide();
+		$(this).parents('.pay-choice').css({'backgroundColor':'#e6e6e6'});
+		$('input[value="credit"]').parents('.pay-choice').css({'backgroundColor':''});
+	}
+	else if(value=='credit') {
+		$("#credit_box").slideDown('slow');
+		$("#wire_box").hide();
+		$("#sidebar-step3").hide();
+		$(this).parents('.pay-choice').css({'backgroundColor':'#e6e6e6'});
+		$('input[value="wire"]').parents('.pay-choice').css({'backgroundColor':''});
+	}
+  });
+  
+  $("#wire_box").hide();
+  $("#credit_box").hide();
+  
+  
+  /* step 4 editable quantity */
+  
+  // dollar separating regex
+  $.fn.digits = function(){ 
+    return this.each(function(){ 
+        $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") ); 
+    })
+  }
+  
+  // update function start
+  function update_quantity(q){
+	  /* return true if success/ false if failed. */
+	if(q != '') 
+		return true;
+	else
+		return false
+  }
+  
+  $('.qedit').each(function(){
+	
+	var $t = $(this), ov = $t.text(); 
+		$t.empty();
+		$t.append('<span class="e-qtext">'+ov+'</span><span class="e-qedit" title="edit quantity" />');	
+	var qtext = $('.e-qtext',$t), qedit = $('.e-qedit',$t), qfield, qsubmit, price;
+		
+	var q = {
+		showField : function(){
+			$t.append('<input type="text" class="e-qfield" value="'+qtext.text()+'" /><span class="e-qsubmit" />');
+			qfield = $('.e-qfield',$t); 
+			qfield.focusout(q.send); 
+			qsubmit = $('.e-qsubmit',$t);
+			qsubmit.click(q.send);
+		},
+		send : function(){
+				var quantity = $('.e-qfield',$t).val();
+				if(update_quantity(quantity)){
+					qtext.empty().text(quantity).show();
+					qedit.show();
+					q.updatePrice(quantity);
+					qsubmit.remove();
+					qfield.remove();
+				} else {
+					qfield.focus();
+					alert('error on submit quantity, please enter quantity and try again.');
+				}
+		}, 
+		bind : function(){	// all event defined
+			qedit.click(function(){
+				qtext.hide();
+				qedit.hide();
+				q.showField();
+				qfield.focus();
+			});
+		},
+		updatePrice : function(q){
+			$parents = $t.parents('tr');
+			price = parseFloat($('.qprice', $parents).text().slice(1));
+			$('.qtotal',$parents).empty().text('$'+price*q);
+			$('.qtotal').digits();
+		}
+	}
+	
+	// start
+	q.bind();
+	
+  });
+  
+});
+
+</script>    
+      
+</head>
+
+<body>
+
+<div class="container"> 
+
+<div class="row">
+
+
+<div class="span4 pull-right" id="sidebar-cart">
+	
+	<table class="table table-striped table-bordered ">
+		<thead>
+			<tr>
+				<th>Order Summary</th>      
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Item</td>
+				<td>Quantity</td>
+				<td>Total</td>
+				<tr>
+					<td>US Silver Eagle</td>
+					<td align="center">2</td>
+					<td>$1,500.00</td>
+				</tr>
+				<tr>
+					<td>US Silver Eagle US Silver Eagle</td>
+					<td align="center">2</td>
+					<td>$1,500.00</td>
+				</tr>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="well" id="sidebar-step3">
+		<div class="stepinfo">
+			<h4>Step Specific Info 1</h4>
+			<p>This is information for step 1, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mauris ipsum, malesuada vitae lobortis id, adipiscing vitae neque. Nunc tincidunt vulputate purus at vulputate. Sed ac velit a neque porttitor vulputate a at eros. Proin vehicula egestas lobortis. Donec interdum ipsum ac justo mattis sed auctor sem volutpat. </p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mauris ipsum, malesuada vitae lobortis id, adipiscing vitae neque. Nunc tincidunt vulputate purus at vulputate. Sed ac velit a neque porttitor vulputate a at eros. Proin vehicula egestas lobortis. Donec interdum ipsum ac justo mattis sed auctor sem volutpat. </p>
+		</div>
+		<div class="stepinfo">
+			<h4>Step Specific Info 2</h4>
+			<p>This is information for step 2, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mauris ipsum, malesuada vitae lobortis id, adipiscing vitae neque. Nunc tincidunt vulputate purus at vulputate. Sed ac velit a neque porttitor vulputate a at eros. Proin vehicula egestas lobortis. Donec interdum ipsum ac justo mattis sed auctor sem volutpat. </p>
+		</div>
+		<div class="stepinfo" >
+			<h4>Step Specific Info 3</h4>
+			<p>This is information for step 2, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mauris ipsum, malesuada vitae lobortis id, adipiscing vitae neque. Nunc tincidunt vulputate purus at vulputate. Sed ac velit a neque porttitor vulputate a at eros. Proin vehicula egestas lobortis. Donec interdum ipsum ac justo mattis sed auctor sem volutpat. </p>
+		</div>
+	</div>
+
+</div> <!-- END sidebar -->
+	
+	
+<div class="span8">
+	
+	<div id="processPanel">
+				
+		<a href="#content1" label="1">
+			Personal<br> Information
+		</a>
+		<a href="#content2" label="2">
+			Delivery<br> Options
+		</a>
+		<a href="#content3" label="3">
+			Payment<br> Details
+		</a>
+		<a href="#content4" label="4">
+			Review<br> Order
+		</a>
+	
+		<div id="content1">
+			
+			<h3>Personal Information</h3>	
+			
+			
+	            <label class="control-label"><h5>Select Account Type</h5></label>
+	            <div class="controls">
+					<form class="well validateform form-inline">
+					  <label class="radio bold">
+						<input type="radio" name="type" id="type_0" value="Individual" checked="checked">
+						Individual Account
+					  </label>
+					  <label class="radio bold">
+						<input type="radio" name="type" id="optionsRadios2" value="joint">
+						Joint Account
+					  </label>
+					  <label class="radio bold">
+						<input type="radio" name="type" id="type_1" value="Company">
+						Corporate / Trust / IRA
+					  </label>
+					</form>
+	            </div>
+	            <div id="company_name">
+					<form class="well validateform form-inline">
+						<h6>Company / IRA Name</h6>
+						<div class="question-mark popover" data-content="This is description for Popover for Company/IRA Name field" data-original-title="Company/IRA Name"></div>
+						<input type="text" class=".span2 validate[required]" placeholder="First name">
+					</form>
+	            </div> <!-- END company_name -->
+	            
+	            
+	            <div id="Individual_box">
+		             <form class="well validateform form-inline">
+					 
+						  <div class="question-mark popover" data-content="This is description for Popover for First/Last Name field" data-original-title="First/Last Name"></div>
+						  <h6>Legal Name</h6>
+						  <input type="text" class=".span2 validate[required]" placeholder="First Name">
+						  <input type="text" class=".span2 validate[required]" placeholder="Last name">
+						
+					</form>
+				</div> <!-- END Individual_box -->
+	        
+		   		<div id="jointnames">
+					<form class="well validateform form-inline">
+					
+					  <div class="question-mark popover" data-content="This is description for Popover for Primary/Secondary Account Holder Name field" data-original-title="Primary/Secondary Account Holder Name"></div>
+					  <h6>Primary Account Holder Name</h6>
+					  <input type="text" class=".span2 validate[required]" placeholder="First name">
+					  <input type="text" class=".span2 validate[required]" placeholder="Last name">
+					  <hr>
+					  
+					  
+					  <h6>Secondary Account Holder Name</h6>
+					  <input type="text" class=".span2 validate[required]" placeholder="First name">
+					  <input type="text" class=".span2 validate[required]" placeholder="Last name">
+					
+					</form>
+				</div> <!-- END Company_box -->
+					
+				<form class="well validateform">
+				
+					
+					<label>Email Address</label>
+					<input type="text" class="span4 validate[required,custom[email]]" id="input_email" placeholder="" rel="popover" title="A Title" data-content="And here's some amazing content. It's very engaging. right?">
+					<label>Re-Enter Email Address</label>
+					<input type="text" class="span4 validate[required,equals[input_email]]" id="confirm_input_email" placeholder="">		
+					
+				</form>
+					
+					
+				<form class="well validateform" id="checkpassword">
+				
+					
+					<label>Create a Password</label>
+					<input type="password" class="span4 validate[required]" placeholder="" id="input_password">
+					<label>Confirm Password</label>
+					<input type="password" class="span4 validate[required,equals[input_password]]" placeholder="" id="confirm_input_password">
+					
+				</form>
+					
+				<form class="well validateform">
+				
+					<div class="question-mark popover" data-content="This is the reason why" data-original-title="Why we need your phone number?"></div>
+					<label>Phone Number</label>
+					<input type="text" class="span4 validate[required,custom[phone]]" placeholder="" id="phonealert" >
+
+				</form>
+		
+		</div> <!-- END content1 -->
+			
+		<div id="content2">
+			
+			<ul class="nav nav-tabs">
+			<a  data-toggle="modal" href="#myModal" ><img src="css/img/help.png" alt="help" width="" height="" align="right" /></a>
+				
+				<li class="active"><a href="#home" data-toggle="tab">Home Delivery</a></li>
+				<li><a href="#vault" data-toggle="tab">Vault Delivery</a></li>
+				
+			</ul>
+			
+			
+			
+							
+			<div class="tab-content">
+				
+				<div class="tab-pane active" id="home">
+				
+				<h3> Please tell us where your order is to be shipped</h3>
+				
+				    <form class="well" id="shipping-address">
+				    
+					<label class="control-label" for="select01">Select Shipping Country</label>
+				    <div class="controls">
+						<select id="select01" class="shipping-country validate[required]">
+				            <option value="">Choose your Country</option>
+				            <option value="a">A</option>
+				            <option value="b">B</option>
+				            <option value="c">C</option>
+				            <option value="d">D</option>
+				        </select>
+				              
+						<label>Street Address</label>
+						<input type="text" class="span4 shipping-address validate[required]" placeholder="">
+					
+					  
+						<div class="row">
+						
+							<div class="span2">
+								<label>City</label>
+								<input type="text" class="span2 shipping-city validate[required]" placeholder="">
+							</div>
+
+							<div class="span2">
+								<label>State</label>
+								<input type="text" class="span2 shipping-state validate[required]" placeholder="">
+							</div>
+						  
+							<div class="span2">
+								<label>Zip /Postal Code</label>
+								<input type="text" class="span2 shipping-zip validate[required]" placeholder="">
+							</div>
+						
+						</div> <!-- END row -->
+					
+					</div><!-- END controls -->
+					</form>
+				
+				</div>  <!-- END Home -->
+				
+			
+				<div class="tab-pane" id="vault">
+				  
+				  <table class="table table-striped ">
+				
+					<h4 class="spacer">Segregated Storage - Master / Sub</h4>
+					<tbody>
+						<tr id="row-dark">
+							<td class="row-highlight">Location</td>
+							<td class="row-highlight">Shipping & Insurance</td>
+							<td class="row-highlight">Estimated Shipping Date</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="radio bold">
+									<input type="radio" name="type" id="" value="">
+									Salt Lake City
+								</label>
+							</td>
+							<td align="center">$23.50</td>
+							<td>March 15, 2012</td>
+						</tr>
+				      
+						<tr>
+							<td>
+								<label class="radio bold">
+									<input type="radio" name="type" id="" value="" disabled>
+									Hong Kong
+								</label>
+							</td>
+							<td align="center">
+								<p class="error-red">This location requires a minimum of:</p>
+							</td>
+							<td>
+								<p class="error-red">100oz silver</p>
+							</td>
+				      
+						</tr>
+					</tbody>
+				  </table>
+
+				</div> <!-- END vault -->
+				 
+			</div> 
+					
+		</div> <!-- END content2 -->
+	
+						
+		<div id="content3">
+		<h3 class="spacer">Please select a payment method below:</h3>
+	
+
+				<form class="form">
+				<div class="pay-choice pull-left">
+					<label class="radio bold">
+						<input type="radio" name="type" id="type_0" value="wire">
+						<h4>Bank Wire with Credit Card</h4>
+					</label>  
+					<!-- <img src="img/bar-bank.png" alt="bar-bank" width="" height="" /> -->
+					<div class="progress progress-striped">
+  						<div class="bar" style="width: 10%;"></div>
+  						5% Credit Card <p class="pull-right">95% Bank Wire</p>
+  						  						
+						</div>
+						
+
+					</div>
+					<div class="pay-choice pull-right">
+					<label class="radio bold">
+						<input type="radio" name="type" id="type_0" value="credit">
+						<h4>100% Credit Card Payment</h4>
+					</label>  
+					<!-- <img src="img/credit-bar.png" alt="credit-bar" width="" height="" /> -->
+					<div class="progress progress-striped">
+  						<div class="bar" style="width: 100%;"></div>
+  						
+						</div>
+						<p style="text-align:center;"> 100% Credit Card Payment</p> 
+					</div>
+					
+				</form>
+
+				
+	<div class="payment-details" id="wire_box">
+		<div class="payment-head">
+		<div class="payment-head-rt">
+				<ul class="unstyled" id="shipping-address-info">
+					<li><h5>Shipping Address</h5></li>
+					<li>Patrick Iwanicki</li>
+					<li>490 Santa Monica Blvd.</li>
+					<li>Santa Monica, California 90401</li>
+					<li> <a href="#">edit address</a></li>
+				</ul>
+			</div> <!-- END head-right -->
+					  
+			  
+			  <div class="payment-head-lft">
+				  <ul class="unstyled">
+				  <li><h3><span class="payment-price-credit"> $509.40</span> = 5% Initial Credit Card Payment Due Now</h3></li>
+				  <hr>
+				  <li><h3><span class="payment-price-wire"> $10,000.00</span> = 95% Bank Wire Balance</h3></li>
+				  </ul>
+
+			  </div> <!-- END head-left -->
+			  
+			  </div> <!-- END payment-head -->
+			  <div class="payment-body">
+			  <div class="payment-help"><h4>HELP / INSTRUCTIONS BOX</h4></div>
+			  
+			  <form class="validateform2">
+			  
+			  	
+				<div style="float:left; width:280px;margin: 5px 10px;">
+					    
+					<h4>Credit Card Details</h4>
+				
+					<label>Credit Card Number</label>
+					<input type="text" class="span3 validate[required,creditCard]" placeholder="" maxlength="16" >
+
+					<label>Credit Card Expiration Date</label>	
+					<select id="01" class="span2 validate[required]">
+						<option value="">Select Date</option>
+						<option value="january">1 - JAN</option>
+						<option value="february">2 - FEB</option>
+						<option value="march">3 - MAR</option>
+						<option value="april">4 - APR</option>
+						<option value="may">5 - MAY</option>
+						<option value="june">6 - JUN</option>
+						<option value="july">7 - JUL</option>
+						<option value="august">8 - AUG</option>
+						<option value="september">8 - SEP</option>
+						<option value="october">9 - OCT</option>
+						<option value="novermber">10 - NOV</option>
+						<option value="december">11 - DEC</option>              
+					</select>
+
+					<select id="02" class="span1 validate[required]" style="margin-left:15px;">
+						<option value="">Select Year</option>
+						<option value="2012">2012</option>
+						<option value="2013">2013</option>
+						<option value="2014">2014</option>
+						<option value="2015">2015</option>
+						<option value="2016">2016</option>
+					</select>
+              
+					<label>Security Code <em>( or "CVC" or "CVV")</em></label>
+					<input type="text" class="span1 validate[required]" placeholder="" maxlength="4" >
+					
+					
+				
+				</div>
+				
+
+				<div style="float:left; width:370px;margin: 5px 0px;">
+					
+					<h4>Billing Address</h4>
+					<label class="checkbox inline">
+						<input class="same-shipbill" type="checkbox" name="optionsCheckboxList1" value="option1">
+						Same as Shipping Address
+					</label>
+					
+					
+					<div class="shipAddressForm">
+						<label>Billing Country</label>
+
+						<select id="03" class="span3 billing-country validate[required]">
+							<option value="">Choose your Country</option>
+				            <option value="a">A</option>
+				            <option value="b">B</option>
+				            <option value="c">C</option>
+				            <option value="d">D</option>
+						</select>
+						
+						<label>Billing Street Address</label>
+						<input class="billing-address validate[required]" type="text" class="span4 validate[required]" placeholder="">
+						
+						<div class="span-shipping billing-city">
+							<label>City</label>
+							<input type="text" class="span2 validate[required]" placeholder="">
+						</div>
+
+						<div class="span-shipping billing-state">
+							<label>State</label>
+							<input type="text" class="span2 validate[required]" placeholder="">
+						</div>
+		  
+						<div class="span-shipping billing-zip">
+							<label>Zip /Postal Code</label>
+							<input type="text" class="span2 validate[required]" placeholder="">
+						</div>
+					</div>
+              
+				</div> <!-- END span5 -->
+
+				</form>	<!-- END form -->
+				
+				</div>	<!-- END payment body -->
+			  
+			  
+	</div><!-- END wire-box -->
+	
+	
+	
+	<div class="payment-details" id="credit_box">
+		<div class="payment-head">
+		<div class="payment-head-rt">
+				<ul class="unstyled" id="shipping-address-info">
+					<li><h5>Shipping Address</h5></li>
+					<li>Patrick Iwanicki</li>
+					<li>490 Santa Monica Blvd.</li>
+					<li>Santa Monica, California 90401</li>
+					<li> <a href="#">edit address</a></li>
+				</ul>
+			</div> <!-- END head-right -->
+					  
+			  
+			  <div class="payment-head-lft">
+				  
+				  <ul class="unstyled">
+				  <li><h3><span class="payment-price-credit"> $10,509.40</span> = 100% Credit Card Payment Due Now</h3></li>
+				  <hr>
+				  <li></li>
+				  </ul>				  
+
+			  </div> <!-- END head-left -->
+			  
+			  </div> <!-- END payment-head -->
+			  <div class="payment-body">
+			  <div class="payment-help"><h4>HELP / INSTRUCTIONS BOX</h4></div>
+			  
+			  <form class="validateform3">
+			  
+			  	
+				<div style="float:left; width:280px;margin: 5px 10px;">
+					    
+					<h4>Credit Card Details</h4>
+				
+					<label>Credit Card Number</label>
+					<input type="text" class="span3 validate[required,creditCard]" placeholder="" maxlength="16" >
+
+					<label>Credit Card Expiration Date</label>	
+					<select id="01" class="span2 validate[required]">
+						<option value="">Select Date</option>
+						<option value="january">1 - JAN</option>
+						<option value="february">2 - FEB</option>
+						<option value="march">3 - MAR</option>
+						<option value="april">4 - APR</option>
+						<option value="may">5 - MAY</option>
+						<option value="june">6 - JUN</option>
+						<option value="july">7 - JUL</option>
+						<option value="august">8 - AUG</option>
+						<option value="september">8 - SEP</option>
+						<option value="october">9 - OCT</option>
+						<option value="novermber">10 - NOV</option>
+						<option value="december">11 - DEC</option>              
+					</select>
+
+					<select id="02" class="span1 validate[required]" style="margin-left:15px;">
+						<option value="">Select Year</option>
+						<option value="2012">2012</option>
+						<option value="2013">2013</option>
+						<option value="2014">2014</option>
+						<option value="2015">2015</option>
+						<option value="2016">2016</option>
+					</select>
+              
+					<label>Security Code <em>( or "CVC" or "CVV")</em></label>
+					<input type="text" class="span1 validate[required]" placeholder="" maxlength="4" >
+					
+					
+				
+				</div>
+				
+
+				<div style="float:left; width:370px;margin: 5px 0px;">
+					
+					<h4>Billing Address</h4>
+					<label class="checkbox inline">
+						<input class="same-shipbill" type="checkbox" name="optionsCheckboxList1" value="option1">
+						Same as Shipping Address
+					</label>
+					
+					
+					<div class="shipAddressForm">
+						<label>Billing Country</label>
+
+						<select id="03" class="span3 billing-country validate[required]">
+							<option value="">Choose your Country</option>
+				            <option value="a">A</option>
+				            <option value="b">B</option>
+				            <option value="c">C</option>
+				            <option value="d">D</option>
+						</select>
+						
+						<label>Billing Street Address</label>
+						<input class="billing-address validate[required]" type="text" class="span4 validate[required]" placeholder="">
+						
+						<div class="span-shipping billing-city">
+							<label>City</label>
+							<input type="text" class="span2 validate[required]" placeholder="">
+						</div>
+
+						<div class="span-shipping billing-state">
+							<label>State</label>
+							<input type="text" class="span2 validate[required]" placeholder="">
+						</div>
+		  
+						<div class="span-shipping billing-zip">
+							<label>Zip /Postal Code</label>
+							<input type="text" class="span2 validate[required]" placeholder="">
+						</div>
+					</div>
+              
+				</div> <!-- END span5 -->
+
+				</form>	<!-- END form -->
+				
+				</div>	<!-- END payment body -->
+			  
+			  
+	</div><!-- END credit-box -->
+			
+	 
+		</div> <!-- END content3 -->
+		
+		<div id="content4">
+
+		<div class="row">
+		  <div class="span12">
+		  
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Order Summary</th>      
+					</tr>
+				</thead>
+				<tr>
+				<td>Product Description</td>
+				<td></td>
+				<td>Price</td>
+				<td>Quantity</td>
+				<td></td>
+				<td>Total</td>
+				</tr>
+				
+				<tr>
+				<td><img src="img/products/gold_eagle.png" alt="gold_eagle" width="" height="" /></td>
+				<td><a href"#">American Gold Eagle 1/2 Oz</a></td>
+				<td class="qprice">$899.11</td>
+				<td class="qedit">2</td>
+				<td><a href="#">Remove</a></td>
+				<td class="qtotal">$1,798.22</td>
+				</tr>
+				
+				<tr>
+				<td><img src="img/products/gold_eagle.png" alt="gold_eagle" width="" height="" /></td>
+				<td><a href"#">American Gold Eagle 1/2 Oz</a></td>
+				<td class="qprice">$899.11</td>
+				<td class="qedit">2</td>
+				<td><a href="#">Remove</a></td>
+				<td class="qtotal">$1,798.22</td>
+				</tr>
+
+			</table>
+  
+		  </div> <!-- END span12 -->
+		  <div class="span12 hr ship-ins">		  
+				<div class="span2 offset8 alignright">Shipping & Insurance</div>
+				<div class="span1 offset0">$19.95</div>
+		  </div>
+		  <div class="span12 hr order-total">		  
+				<div class="span2 offset8 alignright">Order Total</div>
+				<div class="span1 offset0">$2,995.00</div>
+		  </div>
+		  <div class="span12 hr">
+			<div class="span6 first pay-ship-method">
+				<p>Payment Method: Bank Wire <a href="#">edit</a></p>
+				<p>Shipping Method: Vault Storage <a href="#">edit</a></p>
+				<p>Estimated Ship Date: <span>05/22/2012</span></p>
+			</div>
+			<div class="span6 second charge-summary">
+				<div class="span3 offset1 alignright">Amount Charged to Credit Card:</div>
+				<div class="span1 amount">$500</div>
+				<div class="span2 offset2 alignright second">Bank Wire Balance:</div>
+				<div class="span1 amount second">$1,500</div>
+			</div>
+		  </div>
+		  <div class="span12 hr ship-bill-credit">
+				<div class="span4 first">
+					<h3>Shipping Address</h3>
+					<p class="emphasis">Salt Lake City Vault</p>
+					<address>Brinks<br/>Salt Lake City, Utah<br/>United State 84119</address>
+				</div>
+				<div class="span4">
+					<h3>Billing Address</h3>
+					<p class="emphasis">Patrick Ux man</p>
+					<address>490 Santa Monica Blvd<br/>Suite 602<br/>Santa Monica, California 90401<br/> United States</address>
+				</div>
+				<div class="span4">
+					<h3>Credit Card Info</h3>
+					<p class="emphasis">Visa</p>
+					<p>4111 1111 1111 1111</p>
+					<p>EXP: 05/2013</p>
+				</div>
+		  </div>
+		   <div class="span12 hr">
+				<h3> Accept Term and Agreement </h3>
+				<div id="term-text">
+					<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at nulla massa, ullamcorper imperdiet enim. Fusce est risus, condimentum sit amet molestie eu, suscipit non massa. Vivamus sit amet volutpat lectus. Sed turpis massa, condimentum sit amet volutpat eu, eleifend id augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lorem erat, fermentum ac auctor a, tempus sed ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed at ligula mi. Praesent egestas mattis erat eget condimentum. Duis tellus velit, semper congue facilisis tincidunt, condimentum ac augue. Nam facilisis, lectus nec mattis rhoncus, nunc nisi tincidunt elit, id ornare velit purus a risus. Nunc ultrices, odio vel tempor adipiscing, elit odio imperdiet tortor, quis porta nisi nisi id purus. Cras ante neque, convallis consequat ullamcorper non, tincidunt sed sapien. Fusce vestibulum, ante nec euismod volutpat, lorem nisl rutrum turpis, ac vehicula elit magna ac libero. Nulla facilisi.
+					</p>
+					<p>
+					Praesent ut magna ut mi ultrices viverra. Phasellus pharetra mattis iaculis. Donec imperdiet dictum metus eget posuere. Nulla imperdiet porta tincidunt. Mauris rutrum nibh sit amet risus fermentum id semper libero iaculis. Nam et dictum lorem. Integer ut felis nunc. Nam bibendum pretium dui et consectetur. Cras non lorem tortor. Duis ornare ligula id enim accumsan euismod. Morbi accumsan hendrerit odio, eu bibendum nunc rhoncus eget. Nam gravida rutrum tincidunt. Suspendisse potenti. Sed volutpat risus id augue ultricies lacinia. Integer aliquam nisl quis tortor accumsan lacinia.
+					</p>
+					<p>
+					Integer pulvinar porta turpis, iaculis consectetur libero cursus sed. Duis tristique ornare tellus, a sodales arcu tempor non. Fusce quis aliquet ligula. Morbi ultricies quam id turpis laoreet ornare. Donec at justo at est tristique ultricies et a ipsum. Nulla elementum semper justo vitae blandit. Nulla facilisi. Vivamus bibendum neque ac magna varius consectetur. Nam faucibus semper diam. Duis consequat leo a lectus gravida quis rhoncus odio gravida. Nulla in magna rhoncus eros egestas sollicitudin et in dui. Quisque consectetur urna quis nulla sodales placerat.
+					</p>
+					<p>
+					Cras odio massa, tempus ac mattis eget, euismod eu felis. Proin ut magna sed erat viverra congue nec sed tortor. Etiam sit amet hendrerit ipsum. Ut semper porttitor augue, quis feugiat arcu ullamcorper eget. Fusce id risus diam. Donec vitae arcu at sem lobortis consectetur sit amet et tellus. Suspendisse potenti. Etiam nec diam vitae quam tincidunt ullamcorper. In sed diam dolor, ac tincidunt dolor. Ut vitae tincidunt augue. Aliquam ut aliquam tortor. Mauris pretium sapien ut metus luctus cursus. Suspendisse ac turpis id tellus ultrices consectetur.
+					</p>
+					<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel orci vel felis ullamcorper tempor non vitae neque. Donec rutrum luctus nulla, id euismod diam facilisis dignissim. Cras luctus, turpis et dignissim venenatis, dui nulla convallis augue, quis accumsan leo neque at turpis. Nunc porttitor elit id augue molestie hendrerit. Aenean sit amet massa vel enim sollicitudin aliquam quis sed sem. Suspendisse ac velit tincidunt nisl ullamcorper posuere. Sed id odio ligula.
+					</p>
+					<p>
+					Nunc tempor elementum condimentum. Etiam lectus nunc, dictum nec vulputate lacinia, sagittis vel lorem. Sed eros eros, aliquam sed dictum id, mattis eget nunc. Aliquam erat volutpat. Fusce sapien turpis, ultrices eu ullamcorper lacinia, tempor non tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eu dui elit, vitae laoreet eros. Nunc malesuada dolor ac eros pulvinar at scelerisque tellus fermentum. Maecenas placerat tempor lacus vel dignissim.
+					</p>
+					<p>
+					Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras massa odio, hendrerit et fringilla ac, imperdiet id nulla. Aenean tincidunt quam sit amet augue venenatis laoreet. Nunc felis neque, faucibus sed venenatis pulvinar, ornare vehicula odio. Aenean in iaculis lectus. Nulla cursus ipsum sit amet dolor ultrices a adipiscing dolor sagittis. Aliquam dolor nisi, interdum vel dictum id, vehicula a mi. Nulla vestibulum ipsum vitae diam feugiat non auctor mauris vestibulum. Aliquam nisi lorem, egestas tincidunt laoreet eu, consequat sed diam. Etiam adipiscing nulla ac tellus sollicitudin quis lacinia nisl bibendum. Vivamus dignissim gravida felis. Integer pretium feugiat risus, ac elementum libero sodales elementum.
+					</p>
+					<p>
+					In commodo neque in odio feugiat vulputate. Vestibulum nulla neque, egestas at mattis non, pharetra sagittis massa. Sed sollicitudin, lectus eu malesuada imperdiet, justo neque congue odio, ut vestibulum lacus nunc auctor enim. Aliquam bibendum sagittis ipsum, nec scelerisque risus condimentum eu. Nullam tortor felis, eleifend et pellentesque vel, sodales sit amet sapien. Aliquam sit amet odio ac nisi iaculis commodo nec mollis diam. Ut nibh nisi, tempus nec vehicula at, ultrices sed tortor. Fusce augue leo, condimentum in auctor vitae, consequat vitae lectus.
+					</p>
+					<p>
+					Cras bibendum enim in sapien varius egestas. Fusce eget sapien eu orci venenatis adipiscing vel mollis neque. Donec hendrerit metus dui, sed vestibulum tortor. Nulla non nulla sapien. Donec cursus elit at arcu rutrum sed tincidunt elit porttitor. Mauris dictum scelerisque bibendum. In hac habitasse platea dictumst. Sed adipiscing diam et nulla hendrerit convallis. Praesent rhoncus ultricies nisi eu sodales. Vivamus nec nibh vitae metus cursus ornare non sit amet felis. Quisque mauris magna, volutpat at bibendum facilisis, tempus nec sem. Donec tristique feugiat purus, sed tincidunt nibh tristique vel. Sed posuere quam ac risus mattis non vehicula turpis dictum. Sed non imperdiet justo.
+					</p>
+					<p>
+					Duis elit erat, tincidunt at suscipit ac, malesuada ac arcu. Vestibulum quis mi tellus, vel fermentum arcu. Aliquam dui dui, dictum sit amet rutrum a, molestie suscipit quam. Phasellus a velit ligula, non sollicitudin felis. Cras vehicula leo quis eros vehicula semper. Aliquam pulvinar consectetur dapibus. Sed porta, libero eu condimentum rutrum, orci mi porttitor erat, ac vestibulum lorem nulla at est. Praesent sodales nunc in neque aliquet luctus. Fusce molestie nisi nec metus scelerisque id mollis metus dapibus. Vestibulum non ipsum in elit sodales imperdiet eu ut ipsum.
+					</p>
+				</div>
+				<label id="term-checkbox" for="term-checkbox"><input type="checkbox" name="term-checkbox"/>I ACCEPT THE TERM AND AGREEMENT</label>
+		   </div>
+
+		</div> <!-- END row -->
+
+		</div> <!-- END content4 -->
+		
+	 
+	</div> <!-- END process panel -->
+	
+
+</div> <!-- END span8 -->
+
+</div> <!-- END row -->
+
+
+<div class="modal fade" id="myModal">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Delivery Information</h3>
+  </div>
+  <div class="modal-body">
+    <p>Vault…</p>
+    <p>Home…</p>
+  </div>
+  
+</div>
+
+
+</div> <!-- END container -->
+
+     	
+   
+
+  </body>
+</html>

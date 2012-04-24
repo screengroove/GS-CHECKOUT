@@ -1,0 +1,20 @@
+.step-maroon-gray
+{
+	color: #999999;
+	background-position: -10px -10px;
+}
+.step1-maroon-gray, .boxStart-maroon-gray
+{
+	color: #ffffff;
+	background-position: -10px -250px;
+}
+.nextPrevButtons .activeButton-maroon-gray
+{
+	color: #999999;
+	background-position: -10px -10px;
+}
+.nextPrevButtons .activeButton-maroon-gray:hover
+{
+	color: #ffffff;
+	background-position: -10px -190px;
+}

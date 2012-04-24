@@ -1,0 +1,18 @@
+.step-green-orange
+{
+	color: #ffffff;
+	background-position: -10px -330px;
+}
+.step1-green-orange, .boxStart-green-orange
+{
+	background-position: -10px -90px;
+}
+.nextPrevButtons .activeButton-green-orange
+{
+	color: #ffffff;
+	background-position: -10px -250px;
+}
+.nextPrevButtons .activeButton-green-orange:hover
+{
+	background-position: -10px -70px;
+}

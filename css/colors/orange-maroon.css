@@ -1,0 +1,18 @@
+.step-orange-maroon
+{
+	color: #ffffff;
+	background-position: -10px -250px;
+}
+.step1-orange-maroon, .boxStart-orange-maroon
+{
+	background-position: -10px -330px;
+}
+.nextPrevButtons .activeButton-orange-maroon
+{
+	color: #ffffff;
+	background-position: -10px -190px;
+}
+.nextPrevButtons .activeButton-orange-maroon:hover
+{
+	background-position: -10px -250px;
+}
