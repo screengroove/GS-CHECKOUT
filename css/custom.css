@@ -108,6 +108,10 @@ background: #000;
 
 }
 
+.link-small{
+font-size: .8em;
+}
+
 .error-red{
 font-style: italic;
 color:red;
@@ -227,7 +231,7 @@ border-radius: 4px;
 }
 
 #sidebar-cart{
-display:none;
+
 }
 
 .qedit{
@@ -282,7 +286,7 @@ cursor: pointer;
 
 .span12.hr {
 	border-bottom: 2px solid #F2F2F2;
-	padding: 20px 0;
+	padding: 10px 0;
 	font-size: 15px;
 }
 
@@ -319,7 +323,7 @@ cursor: pointer;
 	line-height: 1.6em;
 }
 
-.ship-bill-credit h3, .ship-bill-credit p, .ship-bill-credit address{
+.ship-bill-credit h3, .ship-bill-credit p, .ship-bill-credit address, .ship-bill-credit a{
 	padding-left: 50px;
 	width: 200px;
 }
@@ -338,7 +342,7 @@ cursor: pointer;
 }
 
 #term-checkbox{
-	width: 340px;
+	width: 345px;
 	margin: auto;
 	font-size: 16px;
 	font-weight: bold;
@@ -347,4 +351,20 @@ cursor: pointer;
 #term-checkbox input{
 	float: left;
 	margin-right: 12px;
+}
+
+.table tr:nth-child(1){
+/* background: #000; */
+
+}
+
+tfoot:first-child{
+font-size: .9em;
+
+}
+
+#table-review{
+font-size: 1.2em;
+
+
 }

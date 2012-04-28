@@ -58,15 +58,19 @@
 .nextPrevButtons
 {
 	clear: both;
-	width: 310px;
+	width: 600px;
+/*
 	margin-left: auto;
 	margin-right: auto;
+*/
 	padding-top: 10px;
 	padding-bottom: 10px;
+	float: right;
 }
 .nextPrevButtons .button:first-child
 {
-	margin-right: 10px;
+	margin-right: 281px;
+	float:left;
 }
 .nextPrevButtons .button
 {
