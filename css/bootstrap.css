@@ -585,9 +585,10 @@ legend {
   width: 100%;
   padding: 0;
   margin-bottom: 27px;
-  font-size: 19.5px;
+  font-size: 29.5px;
   line-height: 36px;
   color: #333333;
+  text-align: center;
   border: 0;
   border-bottom: 1px solid #eee;
 }
@@ -2061,14 +2062,15 @@ table .span24 {
 }
 .btn-large {
   padding: 9px 14px;
-  font-size: 15px;
+  font-size: 18px;
   line-height: normal;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
 .btn-large [class^="icon-"] {
-  margin-top: 1px;
+  margin-top: 3px;
+  margin-right:4px;
 }
 .btn-small {
   padding: 5px 9px;

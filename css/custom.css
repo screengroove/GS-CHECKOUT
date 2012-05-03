@@ -120,7 +120,7 @@ color:red;
 /* PAYMENT CHOICES */
 
 .payment-details{
-width: 930px;
+width: 600px;
  min-height: 20px;
   padding: 0 5 5 5px;
   margin-bottom: 10px;
@@ -156,7 +156,7 @@ padding-bottom: 20px;
 
 
 .payment-head-lft{
-width:620px;
+/* width:600px; */
 padding:10px;
 
 }
@@ -209,7 +209,7 @@ border-left:1px solid #e0e0e0;
 -webkit-border-radius: 0px 0px 4px 4px;
 border-radius: 0px 0px 4px 4px;
 margin:0px;
-padding:8px;
+padding:4px;
 background: #f7f7f7;
 height: 320px;
 }
@@ -370,6 +370,19 @@ font-size: 1.2em;
 .rt-align{
 text-align: right;
 float:right;
+
+}
+
+.section-title{
+-webkit-border-radius: 5px 5px 0px 0px;
+border-radius: 5px 5px 0px 0px;
+text-align: center;
+border-bottom: 1px dashed #5d5d5d;
+margin-bottom: 20px;
+background: #666;
+color: #fff;
+padding: 5px;
+
 
 }
 
