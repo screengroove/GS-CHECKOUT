@@ -105,11 +105,14 @@
 {
 	color: #999999;
 	background-position: -10px -10px;
+	font-size: 1.2em;
 }
 .nextPrevButtons .activeButton-green-gray:hover
 {
 	color: #ffffff;
 	background-position: -10px -70px;
+
+	
 }
 .step-green-maroon
 {

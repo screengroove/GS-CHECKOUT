@@ -50,6 +50,19 @@
     <script src="js/bootstrap-carousel.js"></script>
     <script src="js/bootstrap-typeahead.js"></script>
 	-->
+	
+	<!-- // bugherd -->
+	
+	<script type='text/javascript'>
+(function (d, t) {
+  var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
+  bh.type = 'text/javascript';
+  bh.src = '//www.bugherd.com/sidebarv2.js?apikey=250567b3-5e35-4a61-97aa-0708e14a7283';
+  s.parentNode.insertBefore(bh, s);
+  })(document, 'script');
+</script>
+	
+	
 <script type="text/javascript">
 jQuery(document).ready(function($){
 
@@ -416,13 +429,13 @@ $('#collapseOne').collapse({
 					  </label>
 					  <label class="radio bold">
 						<input type="radio" name="type" id="type_1" value="Company">
-						Corporate / Trust / IRA
+						Company / Trust
 					  </label>
 					</form>
 	            </div>
 	            <div id="company_name" class="fade in active">
 					<form class="well validateform form-inline">
-						<h6>Company / IRA Name</h6>
+						<h6>Company / Trust Name<span class="asterik">*</span></h6>
 						<div class="question-mark popover" data-content="This is description for Popover for Company/IRA Name field" data-original-title="Company/IRA Name"></div>
 						<input type="text" class=".span2 validate[required]" placeholder="First name">
 					</form>
@@ -433,7 +446,7 @@ $('#collapseOne').collapse({
 		             <form class="well validateform form-inline">
 					 
 						  <div class="question-mark popover" data-content="This is description for Popover for First/Last Name field" data-original-title="First/Last Name"></div>
-						  <h6>Legal Name</h6>
+						  <h6>Legal Name<span class="asterik">*</span></h6>
 						  <input type="text" class=".span2 validate[required]" placeholder="First Name">
 						  <input type="text" class=".span2 validate[required]" placeholder="Last name">
 						
@@ -444,13 +457,13 @@ $('#collapseOne').collapse({
 					<form class="well validateform form-inline">
 					
 					  <div class="question-mark popover" data-content="This is description for Popover for Primary/Secondary Account Holder Name field" data-original-title="Primary/Secondary Account Holder Name"></div>
-					  <h6>Primary Account Holder Name</h6>
+					  <h6>Primary Account Holder Name<span class="asterik">*</span></h6>
 					  <input type="text" class=".span2 validate[required]" placeholder="First name">
 					  <input type="text" class=".span2 validate[required]" placeholder="Last name">
 					  <hr>
 					  
 					  
-					  <h6>Secondary Account Holder Name</h6>
+					  <h6>Secondary Account Holder Name<span class="asterik">*</span></h6>
 					  <input type="text" class=".span2 validate[required]" placeholder="First name">
 					  <input type="text" class=".span2 validate[required]" placeholder="Last name">
 					
@@ -460,9 +473,9 @@ $('#collapseOne').collapse({
 				<form class="well validateform">
 				
 					
-					<label>Email Address</label>
+					<label>Email Address<span class="asterik">*</span></label>
 					<input type="text" class="span4 validate[required,custom[email]]" id="input_email" placeholder="" rel="popover" title="A Title" data-content="And here's some amazing content. It's very engaging. right?">
-					<label>Re-Enter Email Address</label>
+					<label>Re-Enter Email Address<span class="asterik">*</span></label>
 					<input type="text" class="span4 validate[required,equals[input_email]]" id="confirm_input_email" placeholder="">		
 					
 				</form>
@@ -471,9 +484,9 @@ $('#collapseOne').collapse({
 				<form class="well validateform" id="checkpassword">
 				
 					
-					<label>Create a Password</label>
+					<label>Create a Password<span class="asterik">*</span></label>
 					<input type="password" class="span4 validate[required]" placeholder="" id="input_password">
-					<label>Confirm Password</label>
+					<label>Confirm Password<span class="asterik">*</span></label>
 					<input type="password" class="span4 validate[required,equals[input_password]]" placeholder="" id="confirm_input_password">
 					
 				</form>
@@ -481,7 +494,7 @@ $('#collapseOne').collapse({
 				<form class="well validateform">
 				
 					<div class="question-mark popover" data-content="This is the reason why" data-original-title="Why we need your phone number?"></div>
-					<label>Phone Number</label>
+					<label>Phone Number<span class="asterik">*</span></label>
 					<input type="text" class="span4 validate[required,custom[phone]]" placeholder="" id="phonealert" >
 
 				</form>
@@ -701,9 +714,9 @@ $('#collapseOne').collapse({
 			  
 			  <div class="payment-head-lft">
 				  <ul class="unstyled">
-				  <li><h3><span class="payment-price-credit"> $509.40</span> = 5% Initial Credit Card Payment Due Now</h3></li>
+				  <li><h4><span class="payment-price-credit"> $509.40</span> = 5% Initial Credit Card Payment Due Now</h4></li>
 				  <hr>
-				  <li><h3><span class="payment-price-wire"> $10,000.00</span> = 95% Bank Wire Balance</h3></li>
+				  <li><h4><span class="payment-price-wire"> $10,000.00</span> = 95% Bank Wire Balance Due in 2 Business Days</h4></li>
 				  </ul>
 
 			  </div> <!-- END head-left -->
@@ -1073,6 +1086,7 @@ $('#collapseOne').collapse({
     
     <h4>Please sit tight as this may take a few minutes</h3>
   </div>
+  <a href="success.html">Success</a>
   
 </div>
 

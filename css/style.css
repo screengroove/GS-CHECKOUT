@@ -67,20 +67,27 @@
 	padding-bottom: 10px;
 	float: right;
 }
+
+.nextPrevButtons a{
+	
+
+}
 .nextPrevButtons .button:first-child
 {
 	margin-right: 281px;
 	float:left;
+	background-image: url(../img/sprite_buttons_l.png);
+
 }
 .nextPrevButtons .button
 {
 	float: left;
 	display: block;
-	width: 150px;
+	width: 157px;
 	height: 34px;
 	padding-top: 12px;
 	text-align: center;
-	background-image: url(../img/sprite_buttons.png);
+	background-image: url(../img/sprite_buttons_r.png);
 	background-repeat: no-repeat;
 	cursor: pointer;
 }
